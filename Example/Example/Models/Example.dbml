@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="Example" Class="ExampleDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Example.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ExampleConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblCategory" Member="tblCategories">
+    <Type Name="tblCategory">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="tblCategory_tblProduct" Member="tblProducts" ThisKey="id" OtherKey="category_id" Type="tblProduct" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblProduct" Member="tblProducts">
+    <Type Name="tblProduct">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="category_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="alwaysNull" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="start_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="tblProduct_tblComponent" Member="tblComponents" ThisKey="id" OtherKey="product_id" Type="tblComponent" />
+      <Association Name="tblCategory_tblProduct" Member="tblCategory" ThisKey="category_id" OtherKey="id" Type="tblCategory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblComponent" Member="tblComponents">
+    <Type Name="tblComponent">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="product_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tblProduct_tblComponent" Member="tblProduct" ThisKey="product_id" OtherKey="id" Type="tblProduct" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblConfig" Member="tblConfigs">
+    <Type Name="tblConfig">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="value" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

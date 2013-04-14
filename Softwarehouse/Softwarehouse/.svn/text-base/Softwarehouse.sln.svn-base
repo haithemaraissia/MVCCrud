@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Softwarehouse.MvcCrud", "Softwarehouse\Softwarehouse.MvcCrud.csproj", "{B2AD808A-6311-4AA5-802C-77090C12642A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{68B8E5A7-3672-45DD-9F58-AA1126F0AA97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2AD808A-6311-4AA5-802C-77090C12642A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2AD808A-6311-4AA5-802C-77090C12642A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2AD808A-6311-4AA5-802C-77090C12642A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2AD808A-6311-4AA5-802C-77090C12642A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68B8E5A7-3672-45DD-9F58-AA1126F0AA97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68B8E5A7-3672-45DD-9F58-AA1126F0AA97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68B8E5A7-3672-45DD-9F58-AA1126F0AA97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68B8E5A7-3672-45DD-9F58-AA1126F0AA97}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal

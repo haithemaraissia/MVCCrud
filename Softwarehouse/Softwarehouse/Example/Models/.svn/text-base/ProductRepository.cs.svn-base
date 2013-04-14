@@ -1,0 +1,59 @@
+﻿using System.Data.Linq;
+using Softwarehouse.MvcCrud.JQuery;
+using Softwarehouse.MvcCrud.Repository;
+
+namespace Example.Models
+{
+    public class ProductRepository : LinqToSqlRepository<int, tblProduct>
+    {
+        public ProductRepository()
+            : this(new ExampleDataContext())
+        { }
+
+        public ProductRepository(DataContext db)
+            : base(db, "id", "name")
+        { }
+    }
+
+    //Custom model binder for more detailed error messages
+    public class ProductModelBinder : AutomatedModelBinder<tblProduct>
+    {
+        public override void ExtraBindings()
+        {
+            parseFromForm("category_id", "No category ID");
+            parseFromForm("name", "No name", true); //cannot be blank
+            parseFromForm("price", "No price");
+            parseFromForm("alwaysNull", "Balls");
+            parseFromForm("start_date", "Invalid Date");
+        }
+    }
+
+
+    public class productGrid : GenericDataGrid<tblProduct>
+    {
+        public productGrid()
+            : base("list", "Products", "/Product/GridData/", "product/edit/?", "Product/delete/?", "id", "name"
+            , new[]
+                  {
+                      new DataGridRow("id", "Id", 50), 
+                      new DataGridRow("name", "Name", 100), 
+                      new DataGridRow("tblCategory.name", "Category Name", 150), 
+                      new DataGridRow("start_date", "Start Date", 100), 
+                      new DataGridRow("no_of_components", "Components", 100, "sortable:false")
+                  })
+        { }
+    } 
+
+    //Partial Class to give the count of number of components
+    public partial class tblProduct
+    {
+        public int no_of_components
+        {
+            get
+            {
+                return tblComponents.Count;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/28924/Softwarehouse/Controller
+END
+MvcGridRepositoryCrudController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/31017/Softwarehouse/Controller/MvcGridRepositoryCrudController.cs
+END
+GenericCrudController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/28924/Softwarehouse/Controller/GenericCrudController.cs
+END
+MvcRepositoryCrudController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/28924/Softwarehouse/Controller/MvcRepositoryCrudController.cs
+END

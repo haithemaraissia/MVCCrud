@@ -1,0 +1,66 @@
+﻿//Basic Linq to Sql abstract repository to be inherited and used for the generic controller
+//Developed by Matthew Hood - 2009
+
+using System;
+using System.Collections.Generic;
+using System.Data.Linq;
+using System.Linq;
+using System.Linq.Dynamic;
+
+namespace Softwarehouse.Repository
+{
+    public abstract class LinqToSqlRepository<TKeyType, TModel> : IMvcCrudRepository<TKeyType, TModel> where TModel : class, new() where TKeyType : IComparable
+    {
+        public readonly DataContext db;
+        private readonly string primaryKey;
+        private readonly string orderBy;
+
+        protected LinqToSqlRepository(DataContext db, string primaryKey, string orderBy)
+        {
+            this.db = db;
+            this.primaryKey = primaryKey;
+            this.orderBy = orderBy;
+        }
+
+        public IQueryable<TModel> All()
+        {
+            return db.GetTable<TModel>();
+        }
+
+        public IQueryable<TModel> AllOrdered()
+        {
+            return All().OrderBy(orderBy);
+        }
+
+        public TModel Single(TKeyType id)
+        {
+            //TODO: change to something along the lines of Single(t => PrimaryKey(t) == id), and avoid dynamic linq
+            return db.GetTable<TModel>().Where( primaryKey +  " = @0", id).First();
+        }
+
+        public void Create(TModel t)
+        {
+            db.GetTable<TModel>().InsertOnSubmit(t);
+            db.SubmitChanges();
+        }
+
+        private TKeyType PrimaryKey(TModel t)
+        {
+            return (TKeyType)t.GetType().GetProperty(primaryKey).GetValue(t, null);
+        }
+
+        public void Save(TModel t)
+        {
+            TModel old = Single(PrimaryKey(t));
+            DataContext secondContextToAttach = new DataContext(db.Connection);
+            secondContextToAttach.GetTable<TModel>().Attach(t, old);
+            secondContextToAttach.SubmitChanges();
+        }
+
+        public void Delete(TKeyType id)
+        {
+            db.GetTable<TModel>().DeleteOnSubmit(Single(id));
+            db.SubmitChanges();
+        }
+    }
+}

@@ -1,0 +1,35 @@
+9
+
+dir
+0
+https://mvccrud.svn.codeplex.com/svn/Softwarehouse/Updater
+https://mvccrud.svn.codeplex.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+856ff616-a6d3-46b1-938b-83cc1fee1ebb
+
+Updater.cs
+file
+
+
+
+add
+
